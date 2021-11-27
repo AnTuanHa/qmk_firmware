@@ -16,27 +16,30 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #pragma once
-// Set the mouse settings to a comfortable speed/accuracy trade-off,
-// assuming a screen refresh rate of 60 Htz or higher
-// The default is 50. This makes the mouse ~3 times faster and more accurate
-#define MOUSEKEY_INTERVAL 16
-// The default is 20. Since we made the mouse about 3 times faster with the previous setting,
-// give it more time to accelerate to max speed to retain precise control over short distances.
-#define MOUSEKEY_TIME_TO_MAX 40
-// The default is 300. Let's try and make this as low as possible while keeping the cursor responsive
-#define MOUSEKEY_DELAY 100
-// It makes sense to use the same delay for the mouseweel
-#define MOUSEKEY_WHEEL_DELAY 100
-// The default is 100
-#define MOUSEKEY_WHEEL_INTERVAL 50
-// The default is 40
-#define MOUSEKEY_WHEEL_TIME_TO_MAX 100
 
-// Pick good defaults for enabling homerow modifiers
-// #define TAPPING_TERM 150
-// #define IGNORE_MOD_TAP_INTERRUPT
-// #define TAPPING_FORCE_HOLD
-// #define PERMISSIVE_HOLD
+// https://github.com/qmk/qmk_firmware/blob/develop/docs/squeezing_avr.md
+// Starting with Lock Key support. If you have an Cherry MX Lock switch (lucky
+// you!), you don't want to do this. But chances are, you don't. In that case,
+// add this to your config.h:
+//
+// https://github.com/qmk/qmk_firmware/blob/master/docs/faq_keymap.md
+// This feature is for mechanical lock switch like this Alps one. You can enable
+// it by adding this to your config.h:
+//
+// #define LOCKING_SUPPORT_ENABLE
+// #define LOCKING_RESYNC_ENABLE
+//
+// After enabling this feature use keycodes KC_LCAP, KC_LNUM and KC_LSCR in your
+// keymap instead.
+//
+// Old vintage mechanical keyboards occasionally have lock switches but modern
+// ones don't have. You don't need this feature in most case and just use
+// keycodes KC_CAPS, KC_NLCK and KC_SLCK.
+//
+// Disable this feature to reduce firmware size since we do not use KC_LCAP,
+// KC_LNUM, and KC_LSCR
+#undef LOCKING_SUPPORT_ENABLE
+#undef LOCKING_RESYNC_ENABLE
 
 // 1000 HZ polling rate
 #define USB_POLLING_INTERVAL_MS 1
@@ -51,6 +54,26 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // chording on something with 3-4msscan times? You probably want this.
 #define QMK_KEYS_PER_SCAN 4
 
+// This is required to enable NKRO despite having NKRO_ENABLE = yes in rules.mk
 #define FORCE_NKRO
 
-// #define COMBO_COUNT 3
+// https://beta.docs.qmk.fm/developing-qmk/qmk-reference/config_options
+// disable one-shot modifiers
+//
+// Disable this feature because we are using a custom verison of oneshot that is
+// not based on timers
+#define NO_ACTION_ONESHOT
+
+// https://beta.docs.qmk.fm/developing-qmk/qmk-reference/config_options
+// disable tap dance and other tapping features
+//
+// Disable this feature because we are not using mod-tap, layer tap, tap dance,
+// or other tap dancing features. This reduces firmware size.
+#define NO_ACTION_TAPPING
+
+// https://github.com/qmk/qmk_firmware/blob/develop/docs/squeezing_avr.md
+// There are also some options for layers, that can reduce the firmware size.
+// All of these settngs are for your config.h.
+// You can limit the number of layers that the firmware uses -- if you're using
+// less than 8 layers in total:
+#define LAYER_STATE_8BIT
