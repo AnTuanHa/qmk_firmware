@@ -64,13 +64,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // not based on timers
 #define NO_ACTION_ONESHOT
 
-// https://beta.docs.qmk.fm/developing-qmk/qmk-reference/config_options
-// disable tap dance and other tapping features
-//
-// Disable this feature because we are not using mod-tap, layer tap, tap dance,
-// or other tap dancing features. This reduces firmware size.
-#define NO_ACTION_TAPPING
-
 // https://github.com/qmk/qmk_firmware/blob/develop/docs/squeezing_avr.md
 // There are also some options for layers, that can reduce the firmware size.
 // All of these settngs are for your config.h.
