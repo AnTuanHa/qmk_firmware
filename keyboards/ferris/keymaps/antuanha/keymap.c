@@ -6,9 +6,7 @@ enum layers {
     QWERTY,
     SYMBOLS,
     NAVIGATION,
-    FUNCTIONS,
     FUNCTIONS_NUMPAD,
-    MOUSE,
     MISC,
 };
 
@@ -23,7 +21,6 @@ enum keycodes {
 
 #define L_SYM MO(SYMBOLS)
 #define L_NAV MO(NAVIGATION)
-#define L_MOUSE TG(MOUSE)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [QWERTY] = LAYOUT(
@@ -53,24 +50,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // TODO: Can maybe remove KC_SLCK and KC_PAUS. I have never used these in my life
     [NAVIGATION] = LAYOUT(
     // ┌────────┬────────┬────────┬────────┬────────┐                         ┌────────┬────────┬────────┬────────┬────────┐
-        KC_TAB  ,KC_ESC  ,OS_FUN  ,L_MOUSE ,XXXXXXX ,                          KC_INS  ,KC_HOME ,KC_UP   ,KC_PGUP ,KC_BSPC ,
+        KC_TAB  ,KC_ESC  ,OS_FUN  ,XXXXXXX ,XXXXXXX ,                          KC_INS  ,KC_HOME ,KC_UP   ,KC_PGUP ,KC_BSPC ,
     // ├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
         OS_GUI  ,OS_ALT  ,OS_SFT  ,OS_CTRL ,XXXXXXX ,                          XXXXXXX ,KC_LEFT ,KC_DOWN ,KC_RGHT ,KC_ENT  ,
     // ├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
         KC_PSCR ,KC_SLCK ,KC_PAUS ,XXXXXXX ,OS_MISC ,                          KC_DEL  ,KC_END  ,XXXXXXX ,KC_PGDN ,XXXXXXX ,
-    // └────────┴────────┴────────┴────┬───┴────┬───┼────────┐       ┌────────┼───┬────┴───┬────┴────────┴────────┴────────┘
-                                        _______ ,    _______ ,        _______ ,    _______
-    //                                 └────────┘   └────────┘       └────────┘   └────────┘
-    ),
-
-    // TODO: Maybe remove this layer and replace it with the MISC layer
-    [FUNCTIONS] = LAYOUT(
-    // ┌────────┬────────┬────────┬────────┬────────┐                         ┌────────┬────────┬────────┬────────┬────────┐
-        KC_F1   ,KC_F2   ,KC_F3   ,KC_F4   ,KC_F5   ,                          KC_F6   ,KC_F7   ,KC_F8   ,KC_F9   ,KC_F10  ,
-    // ├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
-        OS_GUI  ,OS_ALT  ,OS_SFT  ,OS_CTRL ,KC_F11  ,                          KC_F12  ,OS_CTRL ,OS_SFT  ,OS_ALT  ,OS_GUI  ,
-    // ├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
-        XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,                          XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,
     // └────────┴────────┴────────┴────┬───┴────┬───┼────────┐       ┌────────┼───┬────┴───┬────┴────────┴────────┴────────┘
                                         _______ ,    _______ ,        _______ ,    _______
     //                                 └────────┘   └────────┘       └────────┘   └────────┘
@@ -85,18 +69,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         XXXXXXX ,KC_F7   ,KC_F8   ,KC_F9   ,KC_F12  ,                          XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,
     // └────────┴────────┴────────┴────┬───┴────┬───┼────────┐       ┌────────┼───┬────┴───┬────┴────────┴────────┴────────┘
                                         _______ ,    _______ ,        _______ ,    _______
-    //                                 └────────┘   └────────┘       └────────┘   └────────┘
-    ),
-
-    [MOUSE] = LAYOUT(
-    // ┌────────┬────────┬────────┬────────┬────────┐                         ┌────────┬────────┬────────┬────────┬────────┐
-        XXXXXXX ,XXXXXXX ,XXXXXXX ,L_MOUSE ,XXXXXXX ,                          XXXXXXX ,KC_WH_U ,KC_MS_U ,KC_WH_D ,XXXXXXX ,
-    // ├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
-        OS_GUI  ,OS_ALT  ,OS_SFT  ,OS_CTRL ,XXXXXXX ,                          XXXXXXX ,KC_MS_L ,KC_MS_D ,KC_MS_R ,XXXXXXX ,
-    // ├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
-        XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,                          XXXXXXX ,KC_WH_L, KC_BTN3 ,KC_WH_R ,XXXXXXX ,
-    // └────────┴────────┴────────┴────┬───┴────┬───┼────────┐       ┌────────┼───┬────┴───┬────┴────────┴────────┴────────┘
-                                        _______ ,    _______ ,        KC_BTN1 ,    KC_BTN2
     //                                 └────────┘   └────────┘       └────────┘   └────────┘
     ),
 
@@ -202,8 +174,4 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (!handled) return false;
 
     return true;
-}
-
-layer_state_t layer_state_set_user(layer_state_t state) {
-    return update_tri_layer_state(state, SYMBOLS, NAVIGATION, FUNCTIONS);
 }
