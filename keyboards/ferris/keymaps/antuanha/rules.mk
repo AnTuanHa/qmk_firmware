@@ -34,3 +34,5 @@ GRAVE_ESC_ENABLE = no
 #
 # Disable since NKRO toggling, GUI and ALT/CTRL swapping is not being used
 MAGIC_ENABLE = no
+
+DEBOUNCE_TYPE = asym_eager_defer_pk
