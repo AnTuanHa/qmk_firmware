@@ -39,9 +39,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // ┌────────┬────────┬────────┬────────┬────────┐                         ┌────────┬────────┬────────┬────────┬────────┐
         KC_1    ,KC_2    ,KC_3    ,KC_4    ,KC_5    ,                          KC_6    ,KC_7    ,KC_8    ,KC_9    ,KC_0    ,
     // ├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
-        OS_GUI  ,OS_ALT  ,OS_SFT  ,OS_CTRL ,KC_GRV  ,                          KC_QUOT ,OS_CTRL ,OS_SFT  ,OS_ALT  ,OS_GUI  ,
+        OS_GUI  ,OS_ALT  ,OS_SFT  ,OS_CTRL ,KC_GRV  ,                          KC_BSLS ,OS_CTRL ,OS_SFT  ,OS_ALT  ,OS_GUI  ,
     // ├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
-        XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,                          KC_BSLS ,KC_LBRC ,KC_RBRC ,KC_MINS ,KC_EQL  ,
+        XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,                          KC_LBRC ,KC_RBRC ,KC_MINS ,KC_EQL  ,KC_QUOT ,
     // └────────┴────────┴────────┴────┬───┴────┬───┼────────┐       ┌────────┼───┬────┴───┬────┴────────┴────────┴────────┘
                                         _______ ,    _______ ,        _______ ,    _______
     //                                 └────────┘   └────────┘       └────────┘   └────────┘
