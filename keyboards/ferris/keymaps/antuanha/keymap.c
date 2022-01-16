@@ -7,6 +7,7 @@ enum layers {
     SYMBOLS,
     NAVIGATION,
     FUNCTIONS_NUMPAD,
+    MOUSE,
     MISC,
 };
 
@@ -21,6 +22,16 @@ enum keycodes {
 
 #define L_SYM MO(SYMBOLS)
 #define L_NAV MO(NAVIGATION)
+#define L_MOUSE TG(MOUSE)
+#define KC_COPY LCTL(KC_C)
+#define KC_PASTE LCTL(KC_V)
+
+// ShareX
+#define SX_REGN LCTL(LSFT(LALT(KC_Z)))
+#define SX_WIN LSFT(LALT(KC_Z))
+#define SX_AUDIO LSFT(LALT(KC_X))
+#define SX_ABORT LSFT(LALT(KC_A))
+#define SX_OCR LSFT(LALT(KC_C))
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [QWERTY] = LAYOUT(
@@ -50,11 +61,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // TODO: Can maybe remove KC_SLCK and KC_PAUS. I have never used these in my life
     [NAVIGATION] = LAYOUT(
     // ┌────────┬────────┬────────┬────────┬────────┐                         ┌────────┬────────┬────────┬────────┬────────┐
-        KC_TAB  ,KC_ESC  ,OS_FUN  ,XXXXXXX ,XXXXXXX ,                          KC_INS  ,KC_HOME ,KC_UP   ,KC_PGUP ,KC_BSPC ,
+        KC_TAB  ,KC_ESC  ,OS_FUN  ,L_MOUSE ,XXXXXXX ,                          KC_INS  ,KC_HOME ,KC_PGUP ,XXXXXXX ,KC_BSPC ,
     // ├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
-        OS_GUI  ,OS_ALT  ,OS_SFT  ,OS_CTRL ,XXXXXXX ,                          XXXXXXX ,KC_LEFT ,KC_DOWN ,KC_RGHT ,KC_ENT  ,
+        OS_GUI  ,OS_ALT  ,OS_SFT  ,OS_CTRL ,XXXXXXX ,                          KC_LEFT ,KC_DOWN ,KC_UP   ,KC_RGHT ,KC_ENT  ,
     // ├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
-        KC_PSCR ,KC_SLCK ,KC_PAUS ,XXXXXXX ,OS_MISC ,                          KC_DEL  ,KC_END  ,XXXXXXX ,KC_PGDN ,XXXXXXX ,
+        KC_PSCR ,KC_SLCK ,KC_PAUS ,XXXXXXX ,OS_MISC ,                          KC_DEL  ,KC_END  ,KC_PGDN ,XXXXXXX ,XXXXXXX ,
     // └────────┴────────┴────────┴────┬───┴────┬───┼────────┐       ┌────────┼───┬────┴───┬────┴────────┴────────┴────────┘
                                         _______ ,    _______ ,        _______ ,    _______
     //                                 └────────┘   └────────┘       └────────┘   └────────┘
@@ -69,6 +80,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         XXXXXXX ,KC_F7   ,KC_F8   ,KC_F9   ,KC_F12  ,                          XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,XXXXXXX ,
     // └────────┴────────┴────────┴────┬───┴────┬───┼────────┐       ┌────────┼───┬────┴───┬────┴────────┴────────┴────────┘
                                         _______ ,    _______ ,        _______ ,    _______
+    //                                 └────────┘   └────────┘       └────────┘   └────────┘
+    ),
+
+    [MOUSE] = LAYOUT(
+    // ┌────────┬────────┬────────┬────────┬────────┐                         ┌────────┬────────┬────────┬────────┬────────┐
+        KC_TAB  ,KC_ESC  ,XXXXXXX ,L_MOUSE ,SX_WIN  ,                          KC_WH_L ,KC_WH_D ,KC_WH_U ,KC_WH_R ,XXXXXXX ,
+    // ├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
+        KC_LGUI ,KC_LALT ,KC_LSFT ,KC_LCTL ,SX_AUDIO,                          KC_MS_L ,KC_MS_D ,KC_MS_U ,KC_MS_R ,XXXXXXX ,
+    // ├────────┼────────┼────────┼────────┼────────┤                         ├────────┼────────┼────────┼────────┼────────┤
+        SX_OCR  ,SX_REGN ,KC_COPY ,KC_PASTE,SX_ABORT,                          XXXXXXX ,KC_BTN4 ,KC_BTN3 ,KC_BTN5 ,XXXXXXX ,
+    // └────────┴────────┴────────┴────┬───┴────┬───┼────────┐       ┌────────┼───┬────┴───┬────┴────────┴────────┴────────┘
+                                        _______ ,    KC_ACL0 ,        KC_BTN1 ,    KC_BTN2
     //                                 └────────┘   └────────┘       └────────┘   └────────┘
     ),
 

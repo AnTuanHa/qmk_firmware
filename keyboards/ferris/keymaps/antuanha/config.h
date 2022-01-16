@@ -70,3 +70,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // You can limit the number of layers that the firmware uses -- if you're using
 // less than 8 layers in total:
 #define LAYER_STATE_8BIT
+
+#define MK_COMBINED
+
+#define MOUSEKEY_DELAY 100
+#define MOUSEKEY_INTERVAL 16
+#define MOUSEKEY_MOVE_DELTA 10
+#define MOUSEKEY_MAX_SPEED 5
+#define MOUSEKEY_TIME_TO_MAX 40
+
+#define MOUSEKEY_WHEEL_DELAY 100
+#define MOUSEKEY_WHEEL_INTERVAL 50
+#define MOUSEKEY_WHEEL_MAX_SPEED 8
+#define MOUSEKEY_WHEEL_TIME_TO_MAX 80
+
+// #define MK_C_OFFSET_0 10
+// #define MK_C_INTERVAL_0 32
+// #define MK_W_OFFSET_0 1
+// #define MK_W_INTERVAL_0 500
