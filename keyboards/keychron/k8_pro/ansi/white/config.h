@@ -42,3 +42,9 @@
 #    define CKLED2001_CURRENT_TUNE  { 0x60, 0x60, 0x60, 0x60, 0x60, 0x60, 0x60, 0x60, 0x60, 0x60, 0x60, 0x60 }
 
 #endif
+
+// 1000 HZ polling rate
+#define USB_POLLING_INTERVAL_MS 1
+
+// This is required to enable NKRO despite having NKRO_ENABLE = yes in rules.mk
+#define FORCE_NKRO
