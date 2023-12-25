@@ -48,3 +48,5 @@
 
 // This is required to enable NKRO despite having NKRO_ENABLE = yes in rules.mk
 #define FORCE_NKRO
+
+#define DEBOUNCE 15
